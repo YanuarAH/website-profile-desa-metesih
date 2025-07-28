@@ -20,7 +20,11 @@ class GuestViewController extends Controller
     }
 
 
-    public function berita() {}
+    public function berita()
+    {
+        $beritas = Berita::latest()->paginate(9);
+        return view('berita/index', compact('beritas'));
+    }
 
     public function struktur() {}
 }

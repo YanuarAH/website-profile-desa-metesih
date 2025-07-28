@@ -6,13 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfilDesa extends Model
 {
-    protected $table = 'profil_desa'; // Nama tabel
     protected $fillable = [
         'nama_desa',
-        'visi',
-        'misi',
-        'geografis',
-        'demografis',
+        'visi_misi',
+        'jumlah_penduduk',
+        'jumlah_rt',
+        'jumlah_rw',
+        'luas_wilayah',
+        'batas_utara',
+        'batas_selatan',
+        'batas_timur',
+        'batas_barat',
         'gambar',
     ];
+
+    // ProfilDesa.php
+    public function dusuns()
+    {
+        return $this->hasMany(Dusun::class);
+    }
+    
 }

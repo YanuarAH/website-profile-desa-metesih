@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,15 +14,18 @@
     <!-- Vite CSS & JS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
 <body class="font-sans antialiased bg-gray-50 text-gray-800">
     <div class="flex flex-col min-h-screen">
         @include('partials.header')
 
-        <main class="flex-grow py-12">
-            @yield('content')
+        <main class="flex-grow">
+            {{-- Ini adalah kontainer untuk semua konten halaman Anda --}}
+            {{-- 'container' & 'mx-auto' membatasi lebar dan membuatnya ke tengah --}}
+            {{-- 'py-12' & 'px-4' memberinya jarak (padding) --}}
+            <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8"> {{-- Sesuaikan padding untuk responsif --}}
+                @yield('content')
+            </div>
         </main>
-
 
         @include('partials.footer')
     </div>
@@ -37,21 +39,36 @@
                 month: 'long',
                 day: 'numeric'
             };
-            // Mengatur locale ke 'en-GB' agar format waktu menjadi 24-jam (misal: 20:05:49)
-            // dan menghilangkan titik pemisah default dari 'id-ID'
             const timeString = now.toLocaleTimeString('en-GB');
             const dateString = now.toLocaleDateString('id-ID', optionsDate);
 
             const clockElement = document.getElementById('realtime-clock');
             if (clockElement) {
-                // Menambahkan format waktu yang lebih umum
                 clockElement.textContent = `${dateString} | ${timeString} WIB`;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', updateRealtimeClock);
-        setInterval(updateRealtimeClock, 1000);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateRealtimeClock();
+            setInterval(updateRealtimeClock, 1000);
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close menu if clicked outside (optional, but good UX)
+                document.addEventListener('click', (event) => {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
     </script>
 </body>
-
 </html>

@@ -10,55 +10,61 @@
 
     {{-- Tampilkan pesan error validasi --}}
     @if ($errors->any())
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <strong class="font-bold">Oops!</strong>
-            <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
-            <ul class="mt-3 list-disc list-inside">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Oops!</strong>
+        <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+        <ul class="mt-3 list-disc list-inside">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
 
     <form action="{{ $berita->id ? route('berita.update', $berita->id) : route('berita.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @if ($berita->id)
-            @method('PUT') {{-- Penting untuk metode UPDATE --}}
+        @method('PUT') {{-- Penting untuk metode UPDATE --}}
         @endif
 
         <div>
             <label for="judul" class="block text-sm font-medium text-gray-700 mb-1">Judul Berita</label>
             <input type="text" name="judul" id="judul" value="{{ old('judul', $berita->judul) }}"
-                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                   required>
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                required>
             @error('judul')
-                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
         <div>
             <label for="konten" class="block text-sm font-medium text-gray-700 mb-1">Isi Berita</label>
             <textarea name="konten" id="konten" rows="10"
-                      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                      >{{ old('konten', $berita->konten) }}</textarea>
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ old('konten', $berita->konten) }}</textarea>
             @error('konten')
-                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
         <div>
             <label for="gambar" class="block text-sm font-medium text-gray-700 mb-1">Gambar Berita (Opsional)</label>
             @if ($berita->gambar)
-                <div class="mb-2">
-                    <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar Saat Ini" class="w-32 h-32 object-cover rounded-md border border-gray-200">
-                    <p class="text-xs text-gray-500 mt-1">Gambar saat ini</p>
-                </div>
+            <div class="mb-2">
+                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar Saat Ini" class="w-32 h-32 object-cover rounded-md border border-gray-200">
+                <p class="text-xs text-gray-500 mt-1">Gambar saat ini</p>
+            </div>
             @endif
             <input type="file" name="gambar" id="gambar"
-                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+
+            <div class="mt-4">
+                <img id="preview-image" class="max-w-full max-h-96 hidden rounded border border-gray-300">
+            </div>
+
+            <input type="hidden" name="cropped_image" id="cropped-image">
+
             @error('gambar')
-                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
@@ -84,4 +90,47 @@
             });
     });
 </script>
+
+<script>
+    let cropper;
+    const imageInput = document.getElementById('gambar');
+    const previewImage = document.getElementById('preview-image');
+    const croppedInput = document.getElementById('cropped-image');
+
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewImage.classList.remove('hidden');
+
+                if (cropper) cropper.destroy();
+
+                cropper = new Cropper(previewImage, {
+                    aspectRatio: 16 / 9,
+                    viewMode: 1,
+                    autoCropArea: 1,
+                    cropend() {
+                        const canvas = cropper.getCroppedCanvas();
+                        croppedInput.value = canvas.toDataURL('image/jpeg');
+                    }
+                });
+
+                // Simpan hasil crop awal
+                reader.onloadend = () => {
+                    setTimeout(() => {
+                        const canvas = cropper.getCroppedCanvas();
+                        croppedInput.value = canvas.toDataURL('image/jpeg');
+                    }, 500);
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+<!-- Cropper.js CSS & JS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 @endsection

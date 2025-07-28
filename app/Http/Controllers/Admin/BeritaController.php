@@ -13,11 +13,31 @@ class BeritaController extends Controller
     {
         $query = Berita::query();
 
+        // Search functionality
         if ($request->filled('search')) {
-            $query->where('judul', 'like', '%' . $request->search . '%');
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('judul', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('konten', 'LIKE', "%{$searchTerm}%");
+            });
         }
 
-        $beritas = $query->latest()->paginate(10);
+        // Sorting
+        $sort = $request->get('sort', 'newest');
+        switch ($sort) {
+            case 'oldest':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'title':
+                $query->orderBy('judul', 'asc');
+                break;
+            case 'newest':
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $beritas = $query->paginate(10)->withQueryString();
 
         return view('admin.berita.index', compact('beritas'));
     }
@@ -36,9 +56,25 @@ class BeritaController extends Controller
             'gambar' => 'image|nullable'
         ]);
 
-        if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('gambars', 'public');
+        if ($request->filled('cropped_image')) {
+            $cropped = $request->input('cropped_image');
+
+            // Ambil data base64 tanpa prefix
+            $cropped = preg_replace('#^data:image/\w+;base64,#i', '', $cropped);
+
+            // Decode base64
+            $imageData = base64_decode($cropped);
+
+            // Generate nama unik
+            $filename = 'gambars/' . uniqid() . '.jpg';
+
+            // Simpan ke storage publik
+            Storage::disk('public')->put($filename, $imageData);
+
+            // Simpan ke kolom gambar
+            $data['gambar'] = $filename;
         }
+
 
         Berita::create($data);
 
@@ -51,23 +87,42 @@ class BeritaController extends Controller
         return view('admin.berita.form', compact('berita'));
     }
 
-    public function update(Request $request, Berita $berita)
+    // app/Http/Controllers/Admin/BeritaController.php
+
+    public function update(Request $request, $id)
     {
-        $data = $request->validate([
+        // 1. Validasi semua input terlebih dahulu
+        $berita = Berita::findOrFail($id);
+        
+        $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required',
-            'gambar' => 'image|nullable'
+            'gambar' => 'image|nullable' // Validasi file tetap ada jika user mengunggah lewat input file biasa
         ]);
 
-        if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
+        // 2. Ambil hanya data yang pasti diupdate (judul dan konten)
+        $data = $request->only(['judul', 'konten']);
+
+        // 3. Proses gambar HANYA JIKA ada gambar baru dari cropper
+        if ($request->filled('cropped_image')) {
+
+            // Hapus gambar lama dari storage
             if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
                 Storage::disk('public')->delete($berita->gambar);
             }
 
-            $data['gambar'] = $request->file('gambar')->store('gambars', 'public');
+            // Proses dan simpan gambar baru
+            $cropped = $request->input('cropped_image');
+            $cropped = preg_replace('#^data:image/\w+;base64,#i', '', $cropped);
+            $imageData = base64_decode($cropped);
+            $filename = 'gambars/' . uniqid() . '.jpg';
+            Storage::disk('public')->put($filename, $imageData);
+
+            // 4. Tambahkan nama file gambar baru ke array data
+            $data['gambar'] = $filename;
         }
 
+        // 5. Lakukan update dengan data yang sudah disiapkan
         $berita->update($data);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui');
