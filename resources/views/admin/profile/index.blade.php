@@ -6,7 +6,7 @@
     <div class="bg-white rounded-lg shadow-md overflow-hidden"> {{-- Tambahkan overflow-hidden --}}
         <div class="p-6">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
-                <h2 class="text-2xl font-bold text-gray-800">Profil Desa</h2>
+                <h2 class="text-2xl font-bold text-gray-800">Kelola Profil Desa</h2>
                 @if(!$profilDesa)
                     <a href="{{ route('profile.create') }}" 
                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -19,10 +19,10 @@
             </div>
 
             @if($profilDesa)
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8"> {{-- Ubah lg menjadi xl --}}
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                     <!-- Main Information -->
-                    <div class="xl:col-span-2"> {{-- Ubah lg menjadi xl --}}
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                    <div class="xl:col-span-2 order-2 xl:order-1">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 sm:p-6 border border-blue-200">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-4">
                                 <div class="flex items-center">
                                     <div class="bg-blue-600 p-2 rounded-lg mr-3 flex-shrink-0">
@@ -56,74 +56,74 @@
                             </div>
 
                             <!-- Statistics Grid -->
-                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                                <div class="bg-white p-4 rounded-lg shadow-sm border">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
+                                <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm border">
                                     <div class="flex items-center">
                                         <div class="bg-green-100 p-2 rounded-lg mr-3 flex-shrink-0">
-                                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                                             </svg>
                                         </div>
-                                        <div class="min-w-0"> {{-- Tambahkan min-w-0 --}}
-                                            <p class="text-sm text-gray-600">Penduduk</p>
-                                            <p class="text-lg font-semibold text-gray-800 truncate">{{ number_format($profilDesa->jumlah_penduduk) }}</p>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs sm:text-sm text-gray-600 mb-1">Penduduk</p>
+                                            <p class="text-sm sm:text-lg font-semibold text-gray-800 break-words">{{ number_format($profilDesa->jumlah_penduduk, 0, ',', '.') }}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm border">
                                     <div class="flex items-center">
                                         <div class="bg-blue-100 p-2 rounded-lg mr-3 flex-shrink-0">
-                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                                             </svg>
                                         </div>
-                                        <div class="min-w-0">
-                                            <p class="text-sm text-gray-600">Luas Wilayah</p>
-                                            <p class="text-lg font-semibold text-gray-800 truncate">{{ $profilDesa->luas_wilayah }} Ha</p>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs sm:text-sm text-gray-600 mb-1">Luas Wilayah</p>
+                                            <p class="text-sm sm:text-lg font-semibold text-gray-800 break-words">{{ number_format($profilDesa->luas_wilayah, 2, ',', '.') }} Ha</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm border">
                                     <div class="flex items-center">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 flex-shrink-0">
-                                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                             </svg>
                                         </div>
-                                        <div class="min-w-0">
-                                            <p class="text-sm text-gray-600">RT</p>
-                                            <p class="text-lg font-semibold text-gray-800">{{ $profilDesa->jumlah_rt }}</p>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs sm:text-sm text-gray-600 mb-1">RT</p>
+                                            <p class="text-sm sm:text-lg font-semibold text-gray-800">{{ $profilDesa->jumlah_rt }}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm border">
                                     <div class="flex items-center">
                                         <div class="bg-indigo-100 p-2 rounded-lg mr-3 flex-shrink-0">
-                                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                             </svg>
                                         </div>
-                                        <div class="min-w-0">
-                                            <p class="text-sm text-gray-600">RW</p>
-                                            <p class="text-lg font-semibold text-gray-800">{{ $profilDesa->jumlah_rw }}</p>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs sm:text-sm text-gray-600 mb-1">RW</p>
+                                            <p class="text-sm sm:text-lg font-semibold text-gray-800">{{ $profilDesa->jumlah_rw }}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="bg-white p-4 rounded-lg shadow-sm border">
+                                <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm border">
                                     <div class="flex items-center">
                                         <div class="bg-orange-100 p-2 rounded-lg mr-3 flex-shrink-0">
-                                            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                             </svg>
                                         </div>
-                                        <div class="min-w-0">
-                                            <p class="text-sm text-gray-600">Dusun</p>
-                                            <p class="text-lg font-semibold text-gray-800">{{ $profilDesa->dusuns->count() }}</p>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="text-xs sm:text-sm text-gray-600 mb-1">Dusun</p>
+                                            <p class="text-sm sm:text-lg font-semibold text-gray-800">{{ $profilDesa->dusuns->count() }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -194,25 +194,25 @@
                     </div>
 
                     <!-- Village Image -->
-                    <div class="xl:col-span-1"> {{-- Ubah lg menjadi xl --}}
-                        <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 h-fit">
+                    <div class="xl:col-span-1 order-1 xl:order-2">
+                        <div class="bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-200 h-fit">
                             <div class="flex items-center mb-4">
-                                <svg class="w-5 h-5 text-gray-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
-                                <h3 class="text-lg font-semibold text-gray-800">Gambar Desa</h3>
+                                <h3 class="text-base sm:text-lg font-semibold text-gray-800">Gambar Desa</h3>
                             </div>
                             <div class="text-center">
                                 @if($profilDesa->gambar)
                                     <img src="{{ Storage::url($profilDesa->gambar) }}"
                                          alt="Gambar Desa" 
-                                         class="w-full h-48 object-cover rounded-lg shadow-sm border border-gray-200">
+                                         class="w-full h-40 sm:h-48 object-cover rounded-lg shadow-sm border border-gray-200">
                                 @else
-                                    <div class="bg-gray-100 p-8 rounded-lg border-2 border-dashed border-gray-300">
-                                        <svg class="w-12 h-12 mx-auto text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="bg-gray-100 p-6 sm:p-8 rounded-lg border-2 border-dashed border-gray-300">
+                                        <svg class="w-8 h-8 sm:w-12 sm:h-12 mx-auto text-gray-400 mb-2 sm:mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
-                                        <p class="text-gray-500 text-sm">Tidak ada gambar</p>
+                                        <p class="text-gray-500 text-xs sm:text-sm">Tidak ada gambar</p>
                                     </div>
                                 @endif
                             </div>

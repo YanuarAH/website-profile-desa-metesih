@@ -53,13 +53,6 @@
                 </a>
             </li>
             <li>
-                <a href="#"
-                   class="py-2 px-1 transition-colors duration-200
-                   {{ request()->routeIs('layanan') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
-                    Layanan
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('berita') }}"
                    class="py-2 px-1 transition-colors duration-200
                    {{ request()->routeIs('berita') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
