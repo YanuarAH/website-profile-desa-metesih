@@ -18,16 +18,23 @@ class ProfilDesaSeeder extends Seeder
     {
         $profilDesa = ProfilDesa::create([
             'nama_desa' => 'Metesih',
-            'visi_misi' => 'VISI: Terwujudnya Desa Metesih yang maju, mandiri, sejahtera, dan berkarakter berdasarkan nilai-nilai gotong royong.
+            'visi_misi' => 'VISI: Mewujudkan Desa Metesih yang Aman, Mandiri, Sejahtera dan Beriman.
 
 MISI:
-1. Meningkatkan kualitas pelayanan publik yang prima kepada masyarakat
-2. Mengembangkan potensi ekonomi desa berbasis kearifan lokal
-3. Memperkuat tata kelola pemerintahan desa yang transparan dan akuntabel
-4. Meningkatkan kualitas sumber daya manusia melalui pendidikan dan pelatihan
-5. Melestarikan budaya dan tradisi lokal sebagai identitas desa
-6. Membangun infrastruktur desa yang mendukung kesejahteraan masyarakat',
-            'jumlah_penduduk' => 3250, // Estimasi berdasarkan 27 RT
+1. Meningkatkan Sumber Daya bagi Aparatur Desa dalam penyelenggaraan Pemerintah Desa
+2. Memantabkan Pembangunan Infrastruktur yang Mendukung Pengembangan Daerah
+3. Memantabkan Pembangunan di bidang Pendidikan untuk Mendorong Peningkatan Kualitas Sumber Daya Manusia
+4. Memantabkan Pembangunan di bidang Kesehatan untuk Meningkatkan gizi bagi Masyarakat
+5. Memantabkan Pembangunan Ekonomi guna Mendorong semakin tumbuh dan berkembangnya kegiatan Ekonomi Masyarakat
+6. Menciptakan Tata Kelola Pemerintah yang baik (good goverment)
+7. Memantabkan Upaya Pelestarian Sumber Daya Alam dan Mewujudkan ruang wilayah Kabupaten yang Mampu Memenuhi Kebutuhan dan Pemerataan Pembangunan di Desa
+8. Melestarikan kegiatan yang Mencakup Sosial Budaya di Pemerintah Desa guna Meningkatkan hubungan erat antar Masyarakat',
+            'jumlah_penduduk' => 4018,
+            'penduduk_lk' => 1946,
+            'penduduk_pr' => 2073,
+            'jumlah_kk' => 1579,
+            'kk_lk' => 1151,
+            'kk_pr' => 428,
             'jumlah_rt' => 27,
             'jumlah_rw' => 7,
             'luas_wilayah' => 265.33,

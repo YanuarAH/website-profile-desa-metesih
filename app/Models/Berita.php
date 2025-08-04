@@ -10,5 +10,10 @@ class Berita extends Model
         'judul',
         'konten',
         'gambar',
+        'tanggal'
+    ];
+
+    protected $casts = [
+        'tanggal' => 'datetime',
     ];
 }

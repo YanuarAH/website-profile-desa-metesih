@@ -26,14 +26,14 @@ class BeritaController extends Controller
         $sort = $request->get('sort', 'newest');
         switch ($sort) {
             case 'oldest':
-                $query->orderBy('created_at', 'asc');
+                $query->orderBy('tanggal', 'asc');
                 break;
             case 'title':
                 $query->orderBy('judul', 'asc');
                 break;
             case 'newest':
             default:
-                $query->orderBy('created_at', 'desc');
+                $query->orderBy('tanggal', 'desc');
                 break;
         }
 
@@ -53,6 +53,7 @@ class BeritaController extends Controller
         $data = $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required',
+            'tanggal' => 'required|date',
             'gambar' => 'image|nullable'
         ]);
 
@@ -97,7 +98,8 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required',
-            'gambar' => 'image|nullable' // Validasi file tetap ada jika user mengunggah lewat input file biasa
+            'tanggal' => 'required|date',
+            'gambar' => 'image|nullable' 
         ]);
 
         // 2. Ambil hanya data yang pasti diupdate (judul dan konten)

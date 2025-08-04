@@ -4,9 +4,10 @@
         <span id="realtime-clock"></span> {{-- ID untuk skrip JavaScript --}}
     </div>
     <div class="flex items-center space-x-4">
-        <a href="mailto:info@desamajujaya.id" class="hover:underline">info@desamajujaya.id</a>
-        <span class="hidden sm:inline">|</span>
-        <a href="tel:+6281234567890" class="hover:underline">+62 812-3456-7890</a>
+        <svg class="w-5 h-5 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+        </svg>
+        <a href="https://maps.app.goo.gl/DQkNgBDPRdREd6QFA">Jl. Jend. A. Yani, Gendu, Metesih, Kec. Jiwan, Kabupaten Madiun, Jawa Timur 63161</a>
     </div>
 </div>
 
@@ -16,7 +17,7 @@
         {{-- Ganti dengan logo desa Anda --}}
         <img src="{{ asset('images/logo/Logo_kabupaten_madiun.gif') }}" alt="Logo Desa" class="h-10 w-10">
         <div>
-            <h1 class="text-lg font-bold text-blue-900">Desa Maju Jaya</h1>
+            <h1 class="text-lg font-bold text-blue-900">Desa Metesih</h1>
             <p class="text-sm text-gray-600">Pemerintah Desa</p>
         </div>
     </a>
@@ -39,14 +40,14 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('profil-desa') }}"
                    class="py-2 px-1 transition-colors duration-200
                    {{ request()->routeIs('profil-desa') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
                     Profil Desa
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('pemerintahan-desa') }}"
                    class="py-2 px-1 transition-colors duration-200
                    {{ request()->routeIs('pemerintahan-desa') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
                     Pemerintahan Desa
@@ -60,17 +61,10 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('galeri-desa') }}"
                    class="py-2 px-1 transition-colors duration-200
                    {{ request()->routeIs('galeri') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
                     Galeri
-                </a>
-            </li>
-            <li>
-                <a href="#"
-                   class="py-2 px-1 transition-colors duration-200
-                   {{ request()->routeIs('kontak') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
-                    Kontak
                 </a>
             </li>
             {{-- Tautan Login Admin --}}

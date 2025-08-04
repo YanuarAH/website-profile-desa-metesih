@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('nama_desa')->default('Desa Metesih');
             $table->text('visi_misi')->nullable();
             $table->integer('jumlah_penduduk')->nullable();
+            $table->integer('penduduk_lk')->nullable();
+            $table->integer('penduduk_pr')->nullable();
+            $table->integer('jumlah_kk')->nullable();
+            $table->integer('kk_lk')->nullable();
+            $table->integer('kk_pr')->nullable();
             $table->integer('jumlah_rt')->nullable();
             $table->integer('jumlah_rw')->nullable();
             $table->string('luas_wilayah')->nullable();

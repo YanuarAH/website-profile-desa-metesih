@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Admin Dashboard') - Desa Maju Jaya</title>
+    <title>@yield('title', 'Admin Dashboard') - Desa Metesih</title>
+
+    <!-- Icon  -->
+    <link rel="icon" type="image" href="{{ asset('images/logo/Logo_kabupaten_madiun.gif') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

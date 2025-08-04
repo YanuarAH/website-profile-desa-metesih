@@ -16,13 +16,13 @@
         </div>
         <div class="bg-green-50 rounded-lg p-6 shadow-sm border border-green-200">
             <h3 class="text-xl font-semibold text-green-800 mb-2">Perangkat Desa</h3>
-            <p class="text-4xl font-bold text-green-600">/</p>
+            <p class="text-4xl font-bold text-green-600">{{ $totalPerangkatDesa }}</p>
             <p class="text-sm text-gray-600 mt-2">Jumlah perangkat desa terdaftar.</p>
         </div>
         <div class="bg-purple-50 rounded-lg p-6 shadow-sm border border-purple-200">
-            <h3 class="text-xl font-semibold text-purple-800 mb-2">Pengunjung Hari Ini</h3>
-            <p class="text-4xl font-bold text-purple-600">123</p> {{-- Ini masih statis, perlu implementasi tracking --}}
-            <p class="text-sm text-gray-600 mt-2">Jumlah pengunjung unik hari ini.</p>
+            <h3 class="text-xl font-semibold text-purple-800 mb-2">Galeri</h3>
+            <p class="text-4xl font-bold text-purple-600">{{ $totalGaleri }}</p>
+            <p class="text-sm text-gray-600 mt-2">Jumlah Foto yang diuplad.</p>
         </div>
     </div>
 
@@ -32,11 +32,14 @@
             <a href="{{ route('berita.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
                 Tambah Berita Baru
             </a>
-            <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
-                Edit Profil Desa
+            <a href="{{ route('profile.index') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                Kelola Profil Desa
             </a>
-            <a href="#" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+            <a href="{{ route('struktur.index') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
                 Kelola Perangkat Desa
+            </a>
+            <a href="{{ route('galeri.index') }}" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                Tambah Galeri
             </a>
             {{-- Anda bisa menambahkan lebih banyak tautan aksi cepat di sini --}}
         </div>

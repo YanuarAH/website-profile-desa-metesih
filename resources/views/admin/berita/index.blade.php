@@ -183,9 +183,8 @@
                                         </td>
                                         <td class="py-4 px-6">
                                             <div class="flex flex-col">
-                                                <span class="font-medium">{{ $berita->created_at->format('d M Y') }}</span>
-                                                <span class="text-xs text-gray-500">{{ $berita->created_at->format('H:i') }}</span>
-                                                <span class="text-xs text-gray-500 mt-1">{{ $berita->created_at->diffForHumans() }}</span>
+                                                <span class="font-medium">{{ $berita->tanggal->format('d M Y') }}</span>
+                                                <span class="text-xs text-gray-500 mt-1">{{ $berita->tanggal->diffForHumans() }}</span>
                                             </div>
                                         </td>
                                         <td class="py-4 px-6">
@@ -241,8 +240,8 @@
                                 <!-- Content -->
                                 <div class="p-4">
                                     <div class="flex items-center justify-between mb-2">
-                                        <span class="text-xs text-gray-500">{{ $berita->created_at->format('d M Y') }}</span>
-                                        <span class="text-xs text-gray-500">{{ $berita->created_at->diffForHumans() }}</span>
+                                        <span class="text-xs text-gray-500">{{ $berita->tanggal->format('d M Y') }}</span>
+                                        <span class="text-xs text-gray-500">{{ $berita->tanggal->diffForHumans() }}</span>
                                     </div>
                                     
                                     <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2">{{ $berita->judul }}</h3>

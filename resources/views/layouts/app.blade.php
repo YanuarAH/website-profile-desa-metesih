@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Desa Maju Jaya') }} @yield('title')</title>
+    <title>{{ config('Desa-Metesih', 'Desa Metesih | Website Desa') }} @yield('title')</title>
+
+    <!-- Icon  -->
+    <link rel="icon" type="image" href="{{ asset('images/logo/Logo_kabupaten_madiun.gif') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
