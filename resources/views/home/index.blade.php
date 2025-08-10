@@ -14,7 +14,7 @@
                 ],
             ],
             [
-                'image' => '/placeholder.svg?height=500&width=1200&text=Kegiatan+Warga+Desa', // Contoh gambar slide 2
+                'image' => 'images/home/3_halaman.jpg', // Contoh gambar slide 2
                 'title' => 'Semangat Gotong Royong',
                 'description' => 'Bersama membangun desa yang lebih baik dan sejahtera',
                 'buttons' => [
@@ -22,7 +22,7 @@
                 ],
             ],
             [
-                'image' => '/placeholder.svg?height=500&width=1200&text=Keindahan+Alam+Desa', // Contoh gambar slide 3
+                'image' => 'images/home/2_halamana.jpg', // Contoh gambar slide 3
                 'title' => 'Informasi terkini',
                 'description' => 'LIhat berbagai informasi terkini yang terjadi di desa',
                 'buttons' => [
