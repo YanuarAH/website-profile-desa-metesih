@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StrukturOrganisasi;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class StrukturOrganisasiController extends Controller
 {
@@ -55,31 +56,45 @@ class StrukturOrganisasiController extends Controller
             'nama' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'urutan' => 'required|integer|min:1',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'foto_original' => 'nullable|image',
+            'foto_cropped' => 'nullable|string'
         ], [
             'nama.required' => 'Nama harus diisi.',
             'jabatan.required' => 'Jabatan harus diisi.',
             'urutan.required' => 'Urutan harus diisi.',
-            'foto.image' => 'File harus berupa gambar.',
-            'foto.max' => 'Ukuran gambar maksimal 2MB.'
+            'foto_original.image' => 'File harus berupa gambar.',
         ]);
 
         $data = $request->only(['nama', 'jabatan', 'urutan']);
+        $fotoPath = null;
 
-        // Handle file upload
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('struktur', 'public');
+        // Prioritaskan gambar yang dipotong dari Cropper.js
+        if ($request->filled('foto_cropped')) {
+            $croppedImage = $request->input('foto_cropped');
+            // Pastikan data adalah Base64 image
+            if (Str::startsWith($croppedImage, 'data:image')) {
+                // Pisahkan "data:image/jpeg;base64," dari data Base64
+                list($type, $croppedImage) = explode(';', $croppedImage);
+                list(, $croppedImage) = explode(',', $croppedImage);
+
+                $croppedImage = base64_decode($croppedImage);
+                $extension = explode('/', explode(':', $type)[1])[0]; // Dapatkan ekstensi (jpeg, png, dll)
+
+                $filename = 'struktur/' . Str::uuid() . '.' . $extension; // Nama file unik
+                Storage::disk('public')->put($filename, $croppedImage);
+                $fotoPath = $filename;
+            }
+        } elseif ($request->hasFile('foto_original')) {
+            // Jika tidak ada gambar yang dipotong, gunakan unggahan file asli
+            $fotoPath = $request->file('foto_original')->store('struktur', 'public');
         }
+
+        $data['foto'] = $fotoPath;
 
         StrukturOrganisasi::create($data);
 
         return redirect()->route('struktur.index')
             ->with('success', 'Struktur organisasi berhasil ditambahkan.');
-    }
-
-    public function show(StrukturOrganisasi $struktur)
-    {
-        return view('admin.struktur.show', compact('struktur'));
     }
 
     public function edit(StrukturOrganisasi $struktur)
@@ -93,25 +108,49 @@ class StrukturOrganisasiController extends Controller
             'nama' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'urutan' => 'required|integer|min:1|',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'foto_original' => 'nullable|image',
+            'foto_cropped' => 'nullable|string'
         ], [
             'nama.required' => 'Nama harus diisi.',
             'jabatan.required' => 'Jabatan harus diisi.',
             'urutan.required' => 'Urutan harus diisi.',
-            'foto.image' => 'File harus berupa gambar.',
-            'foto.max' => 'Ukuran gambar maksimal 2MB.'
+            'foto_original.image' => 'File harus berupa gambar.',
         ]);
 
         $data = $request->only(['nama', 'jabatan', 'urutan']);
 
-        // Handle file upload
-        if ($request->hasFile('foto')) {
-            // Delete old photo if exists
-            if ($struktur->foto) {
+        $fotoPath = $struktur->foto; // Pertahankan foto yang sudah ada secara default
+
+        // Prioritaskan gambar yang dipotong dari Cropper.js
+        if ($request->filled('foto_cropped')) {
+            $croppedImage = $request->input('foto_cropped');
+            if (Str::startsWith($croppedImage, 'data:image')) {
+                // Hapus foto lama jika ada
+                if ($struktur->foto && Storage::disk('public')->exists($struktur->foto)) {
+                    Storage::disk('public')->delete($struktur->foto);
+                }
+
+                list($type, $croppedImage) = explode(';', $croppedImage);
+                list(, $croppedImage) = explode(',', $croppedImage);
+
+                $croppedImage = base64_decode($croppedImage);
+                $extension = explode('/', explode(':', $type)[1])[0];
+
+                $filename = 'struktur/' . Str::uuid() . '.' . $extension;
+                Storage::disk('public')->put($filename, $croppedImage);
+                $fotoPath = $filename;
+            }
+        } elseif ($request->hasFile('foto_original')) {
+            // Jika tidak ada gambar yang dipotong, tapi ada unggahan file asli
+            // Hapus foto lama jika ada
+            if ($struktur->foto && Storage::disk('public')->exists($struktur->foto)) {
                 Storage::disk('public')->delete($struktur->foto);
             }
-            $data['foto'] = $request->file('foto')->store('struktur', 'public');
+            $fotoPath = $request->file('foto_original')->store('struktur', 'public');
         }
+        // Jika tidak ada foto_cropped dan tidak ada foto_original, fotoPath akan tetap foto lama
+
+        $data['foto'] = $fotoPath; // Perbarui path gambar
 
         $struktur->update($data);
 

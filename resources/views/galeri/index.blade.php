@@ -4,11 +4,11 @@
 
 @section('content')
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-7xl mx-auto">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-lg mb-8 p-8 md:p-12 text-center">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4">Galeri Foto Desa Metesih</h1>
-        <p class="text-lg md:text-xl opacity-90">Kumpulan foto kegiatan dan keindahan desa</p>
+    <div class="bg-gradient-to-r from-blue-700 to-blue-900 text-white rounded-lg mb-8 p-8 md:p-12 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">Galeri Foto</h1>
+        <p class="text-lg md:text-xl opacity-90">Metesih - Jiwan</p>
     </div>
 
     @if($galeris->count() > 0)
@@ -16,7 +16,7 @@
         <div class="mb-6">
             <p class="text-sm text-gray-600">Menampilkan {{ $galeris->count() }} dari total {{ $galeris->total() }} foto</p>
         </div>
-
+    @endif
         <!-- Grid Galeri (Menggunakan Komponen) -->
         <div class="mb-8">
             @include('components.galeri-grid', ['galeris' => $galeris, 'isGalleryPage' => true])
@@ -28,15 +28,6 @@
             {{ $galeris->links() }}
         </div>
         @endif
-
-    @else
-        <!-- Empty State -->
-        <div class="text-center py-16 bg-white rounded-lg shadow-md">
-            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <h3 class="text-xl font-medium text-gray-900 mb-2">Galeri Kosong</h3>
-            <p class="text-gray-500">Belum ada foto yang tersedia saat ini.</p>
-        </div>
-    @endif
 </div>
 
 <!-- Modal -->
@@ -67,15 +58,15 @@ function openModal(imageSrc, title, date) {
     const modalTitle = document.getElementById('modalTitle');
     const modalDate = document.getElementById('modalDate');
     const modalLoading = document.getElementById('modalLoading');
-    
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
     modalLoading.classList.remove('hidden');
-    
+
     modalTitle.textContent = title;
     modalDate.textContent = date;
-    
+
     const img = new Image();
     img.onload = function() {
         modalImage.src = imageSrc;

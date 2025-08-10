@@ -8,6 +8,8 @@ use App\Models\RT;
 use App\Models\RW;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilDesaSeeder extends Seeder
 {
@@ -16,8 +18,19 @@ class ProfilDesaSeeder extends Seeder
      */
     public function run(): void
     {
+        $sumberGambar = public_path('images/home/unnamed.jpg');
+        $namaFileGambar = 'unnamed.jpg';
+        $pathTujuan = 'profil-desa/' . $namaFileGambar;
+
+        // 2. Pastikan direktori tujuan ada di dalam storage
+        Storage::disk('public')->makeDirectory('profil-desa');
+
+        // 3. Salin gambar dari public ke storage
+        File::copy($sumberGambar, Storage::disk('public')->path($pathTujuan));
+
         $profilDesa = ProfilDesa::create([
             'nama_desa' => 'Metesih',
+            'gambar' => $pathTujuan,
             'visi_misi' => 'VISI: Mewujudkan Desa Metesih yang Aman, Mandiri, Sejahtera dan Beriman.
 
 MISI:
@@ -41,7 +54,7 @@ MISI:
             'batas_utara' => 'Jiwan',
             'batas_selatan' => 'Bukur',
             'batas_timur' => 'Sambirejo',
-            'batas_barat' => 'Tegalorium',
+            'batas_barat' => 'Tegalarum',
         ]);
 
         // Dusun Krajan

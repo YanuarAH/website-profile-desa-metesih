@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\ProfilDesa;
 use App\Models\Dusun;
 use App\Models\Galeri;
+use App\Models\Kegiatan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StrukturOrganisasi;
 use Illuminate\Http\Request;
@@ -20,49 +21,109 @@ class GuestViewController extends Controller
 
         $profil = ProfilDesa::first();
         $latestGaleris = Galeri::latest()
-                            ->take(6)    
+                            ->take(6)
                             ->get();
         $latestBeritas = Berita::latest('tanggal')
                               ->take(6)
                               ->get();
-        return view('home.index', compact('latestBeritas', 'profil', 'latestGaleris'));
+        $latestKegiatans = Kegiatan::mendatang()
+                                ->orderBy('tanggal', 'asc') // Urutkan berdasarkan tanggal terdekat
+                                ->take(6)
+                                ->get();
+        return view('home.index', compact('latestBeritas', 'profil', 'latestGaleris', 'latestKegiatans'));
     }
 
     public function profile()
     {
         $profil = ProfilDesa::first();
-        
+
         // Ambil daftar dusun
         $dusuns = collect();
         if ($profil) {
             $dusuns = Dusun::where('profil_desa_id', $profil->id)->get();
         }
-        
-        
-        
+
+
+
         return view('profile.index', compact('profil', 'dusuns'));
     }
 
 
-    public function berita()
+    public function berita(Request $request) // Tambahkan Request $request
     {
-        $beritas = Berita::latest()->paginate(9);
+        $query = Berita::query(); // Mulai dengan query dasar
+
+        // Filter by search
+        if ($search = $request->input('search')) {
+            $query->where(function($q) use ($search) {
+                $q->where('judul', 'like', '%' . $search . '%')
+                  ->orWhere('konten', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Sort
+        $sort = $request->input('sort', 'newest'); // Default sort by newest
+        if ($sort === 'oldest') {
+            $query->orderBy('tanggal', 'asc');
+        } elseif ($sort === 'title') {
+            $query->orderBy('judul', 'asc');
+        } else { // 'newest' or any other value
+            $query->orderBy('tanggal', 'desc');
+        }
+
+        $beritas = $query->paginate(9); // 9 items per page
+
         return view('berita.index', compact('beritas'));
     }
 
     public function beritaDetail($id)
     {
         $berita = Berita::findOrFail($id);
-        
+
         $relatedBeritas = Berita::where('id', '!=', $id)
                                 ->orderBy('created_at', 'desc')
                                 ->take(3)
                                 ->get();
-        
+
         return view('berita.show', compact('berita', 'relatedBeritas'));
     }
 
-    public function pemerintahan() 
+    public function kegiatan(Request $request)
+    {
+        $query = Kegiatan::mendatang(); // Hanya ambil kegiatan mendatang
+
+        // Filter by search
+        if ($search = $request->input('search')) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama_kegiatan', 'like', '%' . $search . '%')
+                  ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                  ->orWhere('lokasi', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Sort
+        $sort = $request->input('sort', 'newest');
+        if ($sort === 'oldest') {
+            $query->orderBy('tanggal', 'asc');
+        } elseif ($sort === 'title') {
+            $query->orderBy('nama_kegiatan', 'asc');
+        } else { // newest
+            $query->orderBy('tanggal', 'desc');
+        }
+
+        $kegiatans = $query->paginate(9); // 9 items per page
+
+        return view('kegiatan.index', compact('kegiatans'));
+    }
+
+    public function kegiatanDetail($id)
+    {
+        $kegiatan = Kegiatan::findOrFail($id);
+
+        return view('kegiatan.show', compact('kegiatan'));
+    }
+
+    public function pemerintahan()
     {
         $semuaPerangkat = StrukturOrganisasi::orderBy('urutan', 'asc')->get();
 
@@ -95,18 +156,18 @@ class GuestViewController extends Controller
 
         // Mengirim data yang sudah dikelompokkan ke view
         return view('struktur.index', compact(
-            'kepalaDesa', 
-            'sekretaris', 
-            'kaur', 
-            'kasi', 
-            'kadus', 
+            'kepalaDesa',
+            'sekretaris',
+            'kaur',
+            'kasi',
+            'kadus',
             'lainnya'
         ));
     }
 
     public function galeri()
     {
-        $galeris = Galeri::latest()->paginate(12); 
+        $galeris = Galeri::latest()->paginate(12);
 
         // Mengirim data 'galeris' ke view 'galeri.index'
         return view('galeri.index', compact('galeris'));

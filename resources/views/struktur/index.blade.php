@@ -7,8 +7,8 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-blue-700 to-blue-900 text-white rounded-lg mb-8 p-8 md:p-12 shadow-lg">
         <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Pemerintahan Desa Metesih</h1>
-            <p class="text-xl opacity-90">Struktur Organisasi dan Perangkat Desa</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Pemerintahan Desa</h1>
+            <p class="text-xl opacity-90">Desa Metesih - Kecamatan Jiwan</p>
         </div>
     </div>
 
@@ -16,19 +16,17 @@
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
                     <svg class="w-6 h-6 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4z" clip-rule="evenodd"/></svg>
                     Kantor Desa
                 </h2>
                 <div class="space-y-3 text-gray-600">
                     <div class="flex items-start"><svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg><span>Jl. Jend. A. Yani, Gendu, Metesih, Kec. Jiwan, Kabupaten Madiun, Jawa Timur 63161</span></div>
-                    <div class="flex items-center"><svg class="w-5 h-5 text-gray-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg><span>+62 812-3456-7890</span></div>
-                    <div class="flex items-center"><svg class="w-5 h-5 text-gray-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg><span>info@desametesih.id</span></div>
                 </div>
             </div>
             <div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Jam Pelayanan</h3>
-                <div class="bg-gray-50 rounded-lg p-4"><div class="space-y-2 text-gray-600"><div class="flex justify-between"><span>Senin - Jumat</span><span class="font-medium">08:00 - 15:00</span></div><div class="flex justify-between"><span>Sabtu</span><span class="font-medium">08:00 - 12:00</span></div><div class="flex justify-between"><span>Minggu</span><span class="font-medium text-red-600">Tutup</span></div></div></div>
+                <h3 class="text-xl font-semibold text-gray-800 ">Jam Pelayanan</h3>
+                <div class=" p-4"><div class="space-y-2 text-gray-600"><div class="flex justify-between"><span>Senin - Jumat</span><span class="font-medium">08:00 - 15:00</span></div><div class="flex justify-between"><span>Sabtu-Minggu</span><span class="font-medium text-red-600">Tutup</span></div></div></div>
             </div>
         </div>
     </div>
@@ -36,7 +34,7 @@
     <!-- Struktur Organisasi -->
     <div class="bg-white rounded-lg shadow-md p-6">
         <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h2a2 2 0 002-2V7a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3v6m-9-9V7a2 2 0 012-2h2m0 16h2a2 2 0 002-2v-3m-2-4h.01M17 13h.01M17 17h.01M17 10h.01M12 13h.01M12 17h.01M12 10h.01M5 13h.01M5 17h.01M5 10h.01" />
             </svg>
             Struktur Organisasi Pemerintah Desa

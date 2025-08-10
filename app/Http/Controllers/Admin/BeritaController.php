@@ -67,7 +67,7 @@ class BeritaController extends Controller
             $imageData = base64_decode($cropped);
 
             // Generate nama unik
-            $filename = 'gambars/' . uniqid() . '.jpg';
+            $filename = 'berita/' . uniqid() . '.jpg';
 
             // Simpan ke storage publik
             Storage::disk('public')->put($filename, $imageData);
@@ -94,12 +94,12 @@ class BeritaController extends Controller
     {
         // 1. Validasi semua input terlebih dahulu
         $berita = Berita::findOrFail($id);
-        
+
         $request->validate([
             'judul' => 'required|string|max:255',
             'konten' => 'required',
             'tanggal' => 'required|date',
-            'gambar' => 'image|nullable' 
+            'gambar' => 'image|nullable'
         ]);
 
         // 2. Ambil hanya data yang pasti diupdate (judul dan konten)
@@ -117,7 +117,7 @@ class BeritaController extends Controller
             $cropped = $request->input('cropped_image');
             $cropped = preg_replace('#^data:image/\w+;base64,#i', '', $cropped);
             $imageData = base64_decode($cropped);
-            $filename = 'gambars/' . uniqid() . '.jpg';
+            $filename = 'berita/' . uniqid() . '.jpg';
             Storage::disk('public')->put($filename, $imageData);
 
             // 4. Tambahkan nama file gambar baru ke array data

@@ -2,7 +2,7 @@
 <footer class="bg-blue-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
+
             <!-- Kolom 1: Tentang Desa -->
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <p class="text-sm">
-                    Website resmi Pemerintah Desa Metesih. Sumber informasi terpercaya mengenai kegiatan, layanan, dan potensi desa.
+                    Website resmi Pemerintah Desa Metesih. Sumber informasi terpercaya mengenai kegiatan, berita, dan pemerintahan desa.
                 </p>
             </div>
 
@@ -25,6 +25,7 @@
                     <li><a href="{{ route('profil-desa') }}" class="hover:text-white transition-colors">Profil Desa</a></li>
                     <li><a href="{{ route('pemerintahan-desa') }}" class="hover:text-white transition-colors">Pemerintahan</a></li>
                     <li><a href="{{ route('berita') }}" class="hover:text-white transition-colors">Berita</a></li>
+                    <li><a href="{{ route('kegiatan') }}" class="hover:text-white transition-colors">Agenda Kegiatan</a></li>
                     <li><a href="{{ route('galeri-desa') }}" class="hover:text-white transition-colors">Galeri</a></li>
                 </ul>
             </div>

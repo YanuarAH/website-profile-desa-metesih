@@ -63,7 +63,7 @@
                     <label for="gambar" class="block text-sm font-medium text-gray-700 mb-1">Gambar Desa</label>
                     @if(isset($profilDesa) && $profilDesa->gambar)
                         <div class="mb-2">
-                            <img src="{{ asset('storage/' . $profilDesa->gambar) }}" alt="Current Image" 
+                            <img src="{{ Storage::url($profilDesa->gambar) }}" alt="Current Image" 
                                  class="w-32 h-32 object-cover rounded-md border border-gray-200">
                             <p class="text-xs text-gray-500 mt-1">Gambar saat ini</p>
                         </div>

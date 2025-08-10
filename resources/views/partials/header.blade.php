@@ -15,10 +15,10 @@
 <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center relative z-20 sticky top-0">
     <a href="{{ route('home') }}" class="flex items-center space-x-4">
         {{-- Ganti dengan logo desa Anda --}}
-        <img src="{{ asset('images/logo/Logo_kabupaten_madiun.gif') }}" alt="Logo Desa" class="h-10 w-10">
+        <img src="{{ asset('images/logo/Logo_kabupaten_madiun.gif') }}" alt="Logo Desa" class="h-12 w-12">
         <div>
             <h1 class="text-lg font-bold text-blue-900">Desa Metesih</h1>
-            <p class="text-sm text-gray-600">Pemerintah Desa</p>
+            <p class="text-sm text-gray-600">Jiwan - Madiun</p>
         </div>
     </a>
 
@@ -31,7 +31,7 @@
 
     {{-- Navigasi Desktop --}}
     <nav class="hidden md:block">
-        <ul class="flex space-x-6 text-gray-700 font-medium items-center">
+        <ul class="flex space-x-6 text-gray-700 font-medium items-center text-sm">
             <li>
                 <a href="{{ route('home') }}"
                    class="py-2 px-1 transition-colors duration-200
@@ -56,14 +56,21 @@
             <li>
                 <a href="{{ route('berita') }}"
                    class="py-2 px-1 transition-colors duration-200
-                   {{ request()->routeIs('berita') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
+                   {{ request()->routeIs('berita') || request()->routeIs('berita-detail') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
                     Berita
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kegiatan') }}"
+                   class="py-2 px-1 transition-colors duration-200
+                   {{ request()->routeIs('kegiatan') || request()->routeIs('kegiatan-detail') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
+                    Agenda Kegiatan
                 </a>
             </li>
             <li>
                 <a href="{{ route('galeri-desa') }}"
                    class="py-2 px-1 transition-colors duration-200
-                   {{ request()->routeIs('galeri') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
+                   {{ request()->routeIs('galeri-desa') ? 'text-blue-700 font-bold border-b-4 border-blue-700' : 'hover:text-blue-700' }}">
                     Galeri
                 </a>
             </li>
@@ -80,12 +87,11 @@
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 z-10">
         <ul class="flex flex-col space-y-4 text-gray-700 font-medium px-6">
             <li><a href="{{ route('home') }}" class="block py-2 hover:text-blue-700">Beranda</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Profil Desa</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Pemerintahan Desa</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Layanan</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Berita</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Galeri</a></li>
-            <li><a href="#" class="block py-2 hover:text-blue-700">Kontak</a></li>
+            <li><a href="{{ route('profil-desa') }}" class="block py-2 hover:text-blue-700">Profil Desa</a></li>
+            <li><a href="{{ route('pemerintahan-desa') }}" class="block py-2 hover:text-blue-700">Pemerintahan Desa</a></li>
+            <li><a href="{{ route('berita') }}" class="block py-2 hover:text-blue-700">Berita</a></li>
+            <li><a href="{{ route('kegiatan') }}" class="block py-2 hover:text-blue-700">Agenda Kegiatan</a></li>
+            <li><a href="{{ route('galeri-desa') }}" class="block py-2 hover:text-blue-700">Galeri</a></li>
             <li><a href="{{ route('login') }}" class="block py-2 bg-blue-600 text-white text-center rounded-md hover:bg-blue-700">Login Admin</a></li>
         </ul>
     </div>

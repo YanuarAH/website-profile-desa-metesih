@@ -15,8 +15,8 @@
                 </div>
                 <div class="md:w-1/3">
                     @if($profil && $profil->gambar)
-                        <img src="{{ asset('storage/' . $profil->gambar) }}" 
-                             alt="Foto {{ $profil->nama_desa ?? 'Desa Metesih' }}" 
+                        <img src="{{ asset('storage/' . $profil->gambar) }}"
+                             alt="Foto {{ $profil->nama_desa ?? 'Desa Metesih' }}"
                              class="w-full h-64 object-cover rounded-lg shadow-lg">
                     @else
                         <div class="w-full h-64 bg-blue-500 rounded-lg shadow-lg flex items-center justify-center">
@@ -48,7 +48,7 @@
             </div>
             @endif
         </div>
-        
+
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
             <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
@@ -65,7 +65,7 @@
             </div>
             @endif
         </div>
-        
+
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
             <div class="bg-blue -100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@
             </div>
             <div class="text-sm text-gray-600">RT</div>
         </div>
-        
+
         <div class="bg-white rounded-lg shadow-md p-6 text-center">
             <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@
             </svg>
             Informasi Geografis
         </h2>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="text-center">
                 <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -125,7 +125,7 @@
                 <div class="font-semibold text-gray-800 text-lg">{{ $profil->luas_wilayah ?? '-' }}</div>
                 <div class="text-sm text-gray-600">Luas Wilayah</div>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -136,7 +136,7 @@
                 <div class="text-sm text-gray-600">Jumlah Dusun</div>
             </div>
         </div>
-        
+
         @if($profil && ($profil->batas_utara || $profil->batas_selatan || $profil->batas_timur || $profil->batas_barat))
         <div class="mt-6 pt-6 border-t">
             <h3 class="font-semibold text-gray-800 mb-3 text-center">Batas Wilayah</h3>
@@ -184,7 +184,7 @@
             </svg>
             Daftar Dusun
         </h2>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             @foreach($dusuns as $dusun)
             <div class="bg-indigo-50 rounded-lg p-4 text-center border border-indigo-200">
