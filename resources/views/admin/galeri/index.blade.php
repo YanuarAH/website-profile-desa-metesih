@@ -154,15 +154,15 @@
                             <div class="absolute top-2 left-2 z-10">
                                 <input type="checkbox" name="selected_items[]" value="{{ $galeri->id }}" class="item-checkbox rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" onchange="updateBulkActions()">
                             </div>
-                            
+
                             <!-- Image -->
                             <div class="aspect-square bg-gray-200 overflow-hidden">
-                                <img src="{{ asset('storage/' . $galeri->gambar) }}" 
-                                     alt="{{ $galeri->judul ?? 'Foto Galeri' }}" 
+                                <img src="{{ asset('storage/' . $galeri->gambar) }}"
+                                     alt="{{ $galeri->judul ?? 'Foto Galeri' }}"
                                      class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
                                      onclick="openModal('{{ asset('storage/' . $galeri->gambar) }}', '{{ $galeri->judul ?? 'Foto Galeri' }}')">
                             </div>
-                            
+
                             <!-- Actions Overlay -->
                             <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <div class="flex space-x-1">
@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Content -->
                         <div class="p-4">
                             <h3 class="text-sm font-medium text-gray-900 truncate">
@@ -243,48 +243,77 @@
 </div>
 
 <!-- Image Modal -->
-<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4" onclick="closeModal()">
-    <div class="max-w-4xl max-h-full">
-        <img id="modalImage" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain">
-        <div class="text-center mt-4">
-            <h3 id="modalTitle" class="text-white text-lg font-medium"></h3>
-            <button onclick="closeModal()" class="mt-2 text-white hover:text-gray-300">
-                <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+    <div class="relative max-w-4xl max-h-full w-full">
+        <button onclick="closeModal()" class="absolute -top-10 right-0 text-white hover:text-gray-300 z-10"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+        <div class="bg-white rounded-lg overflow-hidden">
+            <div id="modalLoading" class="hidden absolute inset-0 bg-white flex items-center justify-center z-10"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div></div>
+            <div class="flex items-center justify-center bg-gray-100 min-h-[60vh]">
+                <img id="modalImage" src="" alt="" class="max-w-full max-h-[70vh] object-contain">
+            </div>
+            <div class="p-6 text-center">
+                <h3 id="modalTitle" class="text-xl font-semibold text-gray-900 mb-2"></h3>
+            </div>
         </div>
     </div>
 </div>
 
+<style>
+.aspect-square { aspect-ratio: 1 / 1; }
+</style>
+
 <script>
 function openModal(imageSrc, title) {
-    document.getElementById('modalImage').src = imageSrc;
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('imageModal').classList.remove('hidden');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLoading = document.getElementById('modalLoading');
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    modalLoading.classList.remove('hidden');
+
+    modalTitle.textContent = title;
+
+    const img = new Image();
+    img.onload = function() {
+        modalImage.src = imageSrc;
+        modalImage.alt = title;
+        modalLoading.classList.add('hidden');
+    };
+    img.onerror = function() {
+        modalImage.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzZiNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkdhbWJhciB0aWRhayBkYXBhdCBkaW11YXQ8L3RleHQ+PC9zdmc+';
+        modalLoading.classList.add('hidden');
+    };
+    img.src = imageSrc;
 }
 
 function closeModal() {
-    document.getElementById('imageModal').classList.add('hidden');
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
     document.body.style.overflow = 'auto';
 }
+
+document.getElementById('imageModal').addEventListener('click', function(e) { if (e.target === this) { closeModal(); } });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeModal(); } });
 
 function toggleSelectAll() {
     const selectAll = document.getElementById('selectAll');
     const checkboxes = document.querySelectorAll('.item-checkbox');
-    
+
     checkboxes.forEach(checkbox => {
         checkbox.checked = selectAll.checked;
     });
-    
+
     updateBulkActions();
 }
 
 function updateBulkActions() {
     const checkboxes = document.querySelectorAll('.item-checkbox:checked');
     const bulkBtn = document.getElementById('bulkActionBtn');
-    
+
     if (checkboxes.length > 0) {
         bulkBtn.classList.remove('hidden');
         bulkBtn.textContent = `Hapus ${checkboxes.length} Terpilih`;
@@ -299,10 +328,10 @@ function toggleBulkActions() {
         alert('Pilih foto yang ingin dihapus terlebih dahulu.');
         return;
     }
-    
+
     if (confirm(`Apakah Anda yakin ingin menghapus ${checkboxes.length} foto yang dipilih?`)) {
         const form = document.getElementById('bulkForm');
-        
+
         // Add selected items to form
         checkboxes.forEach(checkbox => {
             const input = document.createElement('input');
@@ -311,7 +340,7 @@ function toggleBulkActions() {
             input.value = checkbox.value;
             form.appendChild(input);
         });
-        
+
         form.submit();
     }
 }

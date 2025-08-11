@@ -41,7 +41,6 @@
             </div>
             <div class="p-6 text-center">
                 <h3 id="modalTitle" class="text-xl font-semibold text-gray-900 mb-2"></h3>
-                <p id="modalDate" class="text-sm text-gray-500"></p>
             </div>
         </div>
     </div>
@@ -52,11 +51,10 @@
 </style>
 
 <script>
-function openModal(imageSrc, title, date) {
+function openModal(imageSrc, title) {
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
-    const modalDate = document.getElementById('modalDate');
     const modalLoading = document.getElementById('modalLoading');
 
     modal.classList.remove('hidden');
@@ -65,7 +63,6 @@ function openModal(imageSrc, title, date) {
     modalLoading.classList.remove('hidden');
 
     modalTitle.textContent = title;
-    modalDate.textContent = date;
 
     const img = new Image();
     img.onload = function() {
