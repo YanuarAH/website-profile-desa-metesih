@@ -12,7 +12,7 @@
 
 ## 📖 Tentang Proyek
 
-Website Profil Desa Metesih adalah sebuah sistem informasi berbasis web yang dibangun untuk menjadi pusat data dan komunikasi bagi warga Desa Metesih serta masyarakat luas. Proyek ini bertujuan untuk meningkatkan transparansi, mempermudah akses informasi, dan mempromosikan potensi yang ada di Desa Metesih.
+Website Profil Desa Metesih adalah sebuah sistem informasi berbasis web yang dibangun untuk menjadi pusat data dan komunikasi bagi warga Desa Metesih serta masyarakat luas. Proyek ini bertujuan untuk meningkatkan transparansi, mempermudah akses informasi baik itu berita yang sudah lampau maupun kegiatan yang akah berlangsung.
 
 Website ini dikembangkan menggunakan Laravel dan Tailwind CSS, dengan fokus pada kemudahan penggunaan baik untuk pengunjung maupun administrator desa.
 
@@ -24,7 +24,7 @@ Website ini memiliki dua sisi utama: halaman publik untuk pengunjung dan panel a
 - **Beranda**: Tampilan utama yang merangkum informasi penting dan berita terbaru.
 - **Profil Desa**: Informasi mendetail mengenai sejarah, visi & misi, serta data demografis desa.
 - **Berita**: Halaman untuk melihat semua artikel berita terkini dari desa.
-- **Informasi Kegiatan**: Menampilkan jadwal kegiatan yang akan datang, dan secara otomatis mengarsipkan kegiatan yang telah selesai.
+- **Agenda Kegiatan**: Menampilkan jadwal kegiatan yang akan datang, dan secara otomatis mengarsipkan kegiatan yang telah selesai.
 - **Struktur Organisasi**: Menampilkan bagan struktur pemerintahan desa.
 - **Galeri**: Kumpulan dokumentasi foto dari berbagai kegiatan desa.
 - **URL Ramah SEO**: Menggunakan format `judul-berita/id` untuk URL yang lebih mudah dibaca oleh mesin pencari dan manusia.
@@ -36,7 +36,6 @@ Website ini memiliki dua sisi utama: halaman publik untuk pengunjung dan panel a
 - **Manajemen Galeri**: Mengelola foto-foto yang akan ditampilkan di halaman galeri.
 - **Editor Profil Desa**: Antarmuka untuk memperbarui konten halaman profil desa.
 - **Editor Struktur Organisasi**: Mengelola data perangkat desa.
-- **Akun Admin Ganda**: Sistem dilengkapi dengan dua akun admin default untuk keperluan utama dan cadangan.
 
 ## 🚀 Teknologi yang Digunakan
 
@@ -106,7 +105,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal 
 
 Setelah menjalankan *seeder*, Anda dapat masuk ke panel admin melalui `/login` menggunakan kredensial berikut:
 
-**Akun Admin Utama:**
+**Akun Admin:**
 - **Email**: `admin@gmail.com`
 - **Password**: `passwordadmin12345`
 
