@@ -56,7 +56,7 @@
                     <div class="space-y-4">
                         @foreach($relatedBeritas as $related)
                             <article class="group flex items-center gap-4">
-                                <a href="{{ route('berita-detail', $related->id) }}" class="block">
+                                <a href="{{ route('berita-detail',['judul' =>Str::slug($related->judul), 'id'=>$related->id]) }}" class="block">
                                     <div class="flex items-center gap-4">
                                         @if($related->gambar)
                                             <img src="{{ asset('storage/' . $related->gambar) }}"

@@ -5,7 +5,7 @@
 @if($beritas && $beritas->count() > 0)
     <div class="space-y-6 mb-8">
         @foreach($beritas as $berita)
-            <a href="{{ route('berita-detail', $berita->id) }}" class="block">
+            <a href="{{ route('berita-detail', ['judul' => Str::slug($berita->judul), 'id' => $berita->id]) }}" class="block">
                 <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer">
                     <div class="md:flex">
                         <div class="md:w-1/3">

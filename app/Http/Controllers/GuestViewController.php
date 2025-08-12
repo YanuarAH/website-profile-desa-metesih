@@ -76,7 +76,7 @@ class GuestViewController extends Controller
         return view('berita.index', compact('beritas'));
     }
 
-    public function beritaDetail($id)
+    public function beritaDetail($judul, $id)
     {
         $berita = Berita::findOrFail($id);
 

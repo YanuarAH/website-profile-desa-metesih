@@ -2,7 +2,7 @@
     File: resources/views//_berita-card.blade.php
     Variabel yang dibutuhkan: $berita
 --}}
-<a href="{{ route('berita-detail', $berita->id) }}" class="block group">
+<a href="{{ route('berita-detail', ['judul' => Str::slug($berita->judul), 'id' => $berita->id]) }}" class="block group">
     <article
         class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
         @if ($berita->gambar)

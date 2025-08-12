@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GuestViewController::class, 'index'])->name('home');
 Route::get('/berita', [GuestViewController::class, 'berita'])->name('berita');
-Route::get('/berita-detail/{id}', [GuestViewController::class, 'beritaDetail'])->name('berita-detail');
+Route::get('/berita/{judul}/{id}', [GuestViewController::class, 'beritaDetail'])->name('berita-detail');
 Route::get('/kegiatan', [GuestViewController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/kegiatan-detail/{id}', [GuestViewController::class, 'kegiatanDetail'])->name('kegiatan-detail');
 Route::get('/profile-desa', [GuestViewController::class, 'profile'])->name('profil-desa');
