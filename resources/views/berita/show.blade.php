@@ -41,7 +41,7 @@
                         {{ $berita->tanggal_publikasi ? \Carbon\Carbon::parse($berita->tanggal_publikasi)->format('d F Y') : $berita->created_at->format('d F Y') }}
                     </div>
                     <!-- Content -->
-                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed ck-konten">
                         {!! $berita->konten !!}
                     </div>
                 </div>
