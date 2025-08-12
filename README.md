@@ -12,7 +12,7 @@
 
 ## 📖 Tentang Proyek
 
-Website Profil Desa Metesih adalah sebuah sistem informasi berbasis web yang dibangun untuk menjadi pusat data dan komunikasi bagi warga Desa Metesih serta masyarakat luas. Proyek ini bertujuan untuk meningkatkan transparansi, mempermudah akses informasi baik itu berita yang sudah lampau maupun kegiatan yang akah berlangsung.
+Website Profil Desa Metesih adalah sebuah sistem informasi berbasis web yang dibangun untuk menjadi pusat data dan komunikasi bagi warga Desa Metesih serta masyarakat luas. Proyek ini bertujuan untuk meningkatkan transparansi, mempermudah akses informasi, dan mempromosikan potensi yang ada di Desa Metesih.
 
 Website ini dikembangkan menggunakan Laravel dan Tailwind CSS, dengan fokus pada kemudahan penggunaan baik untuk pengunjung maupun administrator desa.
 
@@ -24,7 +24,7 @@ Website ini memiliki dua sisi utama: halaman publik untuk pengunjung dan panel a
 - **Beranda**: Tampilan utama yang merangkum informasi penting dan berita terbaru.
 - **Profil Desa**: Informasi mendetail mengenai sejarah, visi & misi, serta data demografis desa.
 - **Berita**: Halaman untuk melihat semua artikel berita terkini dari desa.
-- **Agenda Kegiatan**: Menampilkan jadwal kegiatan yang akan datang, dan secara otomatis mengarsipkan kegiatan yang telah selesai.
+- **Informasi Kegiatan**: Menampilkan jadwal kegiatan yang akan datang, dan secara otomatis mengarsipkan kegiatan yang telah selesai.
 - **Struktur Organisasi**: Menampilkan bagan struktur pemerintahan desa.
 - **Galeri**: Kumpulan dokumentasi foto dari berbagai kegiatan desa.
 - **URL Ramah SEO**: Menggunakan format `judul-berita/id` untuk URL yang lebih mudah dibaca oleh mesin pencari dan manusia.
@@ -36,6 +36,7 @@ Website ini memiliki dua sisi utama: halaman publik untuk pengunjung dan panel a
 - **Manajemen Galeri**: Mengelola foto-foto yang akan ditampilkan di halaman galeri.
 - **Editor Profil Desa**: Antarmuka untuk memperbarui konten halaman profil desa.
 - **Editor Struktur Organisasi**: Mengelola data perangkat desa.
+- **Akun Admin Ganda**: Sistem dilengkapi dengan dua akun admin default untuk keperluan utama dan cadangan.
 
 ## 🚀 Teknologi yang Digunakan
 
@@ -96,5 +97,19 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal 
     php artisan serve
     ```
     Aplikasi sekarang akan berjalan di `http://127.0.0.1:8000`.
+
+## 🔒 Catatan Keamanan
+
+**PENTING**: Jangan pernah menyimpan data sensitif seperti *password*, API *keys*, atau kredensial lainnya langsung di dalam kode yang akan di-*commit* ke repositori. Selalu gunakan file `.env` untuk menyimpan data-data tersebut dan pastikan file `.env` sudah terdaftar di dalam `.gitignore`.
+
+## 🔑 Akun Admin Default
+
+Setelah menjalankan *seeder*, Anda dapat masuk ke panel admin melalui `/login` menggunakan kredensial berikut:
+
+**Akun Admin Utama:**
+- **Email**: `admin@gmail.com`
+- **Password**: `passwordadmin12345`
+
+---
 
 Terima kasih telah menggunakan dan berkontribusi pada proyek ini!
