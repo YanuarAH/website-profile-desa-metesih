@@ -13,7 +13,7 @@ Route::get('/', [GuestViewController::class, 'index'])->name('home');
 Route::get('/berita', [GuestViewController::class, 'berita'])->name('berita');
 Route::get('/berita/{judul}/{id}', [GuestViewController::class, 'beritaDetail'])->name('berita-detail');
 Route::get('/kegiatan', [GuestViewController::class, 'kegiatan'])->name('kegiatan');
-Route::get('/kegiatan-detail/{id}', [GuestViewController::class, 'kegiatanDetail'])->name('kegiatan-detail');
+Route::get('/kegiatan/{nama}/{id}', [GuestViewController::class, 'kegiatanDetail'])->name('kegiatan-detail');
 Route::get('/profile-desa', [GuestViewController::class, 'profile'])->name('profil-desa');
 Route::get('/pemerintahan-desa', [GuestViewController::class, 'pemerintahan'])->name('pemerintahan-desa');
 Route::get('/galeri', [GuestViewController::class, 'galeri'])->name('galeri-desa');

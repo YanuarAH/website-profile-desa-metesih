@@ -116,7 +116,7 @@ class GuestViewController extends Controller
         return view('kegiatan.index', compact('kegiatans'));
     }
 
-    public function kegiatanDetail($id)
+    public function kegiatanDetail($nama, $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
 

@@ -2,7 +2,7 @@
     File: resources/views/components/_kegiatan-card.blade.php
     Variabel yang dibutuhkan: $kegiatan
 --}}
-<a href="{{ route('kegiatan-detail', $kegiatan->id) }}" class="block group">
+<a href="{{ route('kegiatan-detail', ['nama' => Str::slug($kegiatan->nama_kegiatan), 'id' => $kegiatan->id]) }}" class="block group">
     <article class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
         @if($kegiatan->gambar)
             <img src="{{ asset('storage/' . $kegiatan->gambar) }}"
