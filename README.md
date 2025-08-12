@@ -1,61 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Website Profil Desa Metesih
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/logo/Logo_kabupaten_madiun.gif" alt="Logo Kabupaten Madiun" width="150"/>
 </p>
 
-## About Laravel
+<p align="center">
+  Sebuah platform digital untuk menyediakan informasi terkini dan profil lengkap mengenai Desa Metesih, Kecamatan Jiwan, Kabupaten Madiun.
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📖 Tentang Proyek
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Website Profil Desa Metesih adalah sebuah sistem informasi berbasis web yang dibangun untuk menjadi pusat data dan komunikasi bagi warga Desa Metesih serta masyarakat luas. Proyek ini bertujuan untuk meningkatkan transparansi, mempermudah akses informasi baik itu berita yang sudah lampau maupun kegiatan yang akah berlangsung.
 
-## Learning Laravel
+Website ini dikembangkan menggunakan Laravel dan Tailwind CSS, dengan fokus pada kemudahan penggunaan baik untuk pengunjung maupun administrator desa.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Fitur Utama
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Website ini memiliki dua sisi utama: halaman publik untuk pengunjung dan panel admin untuk pengelolaan konten.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Halaman Publik (Guest)
+- **Beranda**: Tampilan utama yang merangkum informasi penting dan berita terbaru.
+- **Profil Desa**: Informasi mendetail mengenai sejarah, visi & misi, serta data demografis desa.
+- **Berita**: Halaman untuk melihat semua artikel berita terkini dari desa.
+- **Agenda Kegiatan**: Menampilkan jadwal kegiatan yang akan datang, dan secara otomatis mengarsipkan kegiatan yang telah selesai.
+- **Struktur Organisasi**: Menampilkan bagan struktur pemerintahan desa.
+- **Galeri**: Kumpulan dokumentasi foto dari berbagai kegiatan desa.
+- **URL Ramah SEO**: Menggunakan format `judul-berita/id` untuk URL yang lebih mudah dibaca oleh mesin pencari dan manusia.
 
-## Laravel Sponsors
+### Panel Admin
+- **Dashboard**: Halaman utama admin untuk memberikan gambaran umum.
+- **Manajemen Berita**: Fungsi CRUD (Create, Read, Update, Delete) penuh untuk mengelola artikel berita.
+- **Manajemen Kegiatan**: CRUD untuk informasi kegiatan, lengkap dengan sistem status (`mendatang`/`selesai`) yang diperbarui secara otomatis setiap hari.
+- **Manajemen Galeri**: Mengelola foto-foto yang akan ditampilkan di halaman galeri.
+- **Editor Profil Desa**: Antarmuka untuk memperbarui konten halaman profil desa.
+- **Editor Struktur Organisasi**: Mengelola data perangkat desa.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Teknologi yang Digunakan
 
-### Premium Partners
+- **Backend**: PHP 8.2, Laravel 11
+- **Frontend**: Tailwind CSS, Alpine.js
+- **Database**: MySQL (atau sesuai konfigurasi Anda)
+- **Build Tool**: Vite
+- **Server**: Apache/Nginx
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠️ Panduan Instalasi
 
-## Contributing
+Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal Anda.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1.  **Clone Repositori**
+    ```bash
+    git clone [https://github.com/nama-anda/nama-repositori.git](https://github.com/nama-anda/nama-repositori.git)
+    cd nama-repositori
+    ```
 
-## Code of Conduct
+2.  **Install Dependensi**
+    Pastikan Anda memiliki Composer dan Node.js terinstal.
+    ```bash
+    composer install
+    npm install
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3.  **Konfigurasi Lingkungan**
+    Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasinya.
+    ```bash
+    cp .env.example .env
+    ```
+    Buka file `.env` dan atur koneksi database Anda (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
 
-## Security Vulnerabilities
+4.  **Generate Application Key**
+    ```bash
+    php artisan key:generate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5.  **Jalankan Migrasi & Seeder**
+    Perintah ini akan membuat semua tabel database dan mengisinya dengan data awal, termasuk akun admin.
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
 
-## License
+6.  **Buat Symbolic Link untuk Storage**
+    Agar file yang di-upload (seperti gambar berita) dapat diakses publik.
+    ```bash
+    php artisan storage:link
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7.  **Kompilasi Aset Frontend**
+    ```bash
+    npm run dev
+    ```
+
+8.  **Jalankan Server Lokal**
+    ```bash
+    php artisan serve
+    ```
+    Aplikasi sekarang akan berjalan di `http://127.0.0.1:8000`.
+
+Terima kasih telah menggunakan dan berkontribusi pada proyek ini!
